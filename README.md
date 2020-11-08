@@ -1,5 +1,6 @@
 # AutomatedClassAttendance
 It is a mini project built by using Selenium to automate the process of signing class attendance of my university. 
+
 **PS: I am a good boy :P, I didn't use it.**
 
 Ways of using it :
