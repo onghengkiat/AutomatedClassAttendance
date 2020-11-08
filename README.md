@@ -4,14 +4,14 @@ It is a mini project built by using Selenium to automate the process of signing 
 
 **PS: I am a good boy :P, I didn't use it.**
 
-Ways of using it :
+Procudure to use it:
 1) Edit the TakeAttendance.py. Fill in the scehedule, username and password according to the format given. The begin and end time is the 24 hours format time.
 2) Make sure your computer has pip installed. 
 3) Make sure your computer has Selenium installed. Else, either run pip install selenium or pip3 install selenium. 
 Alternative way for it is you can run "source env/bin/activate" to activate the virtual environment that I have prepared.
-4) Make sure you have the chrome drive file inside here. The current program is using chrome driver for chrome ver86.
+4) Make sure you have the chrome drive file inside here. The current program is using chrome driver for chrome version 86 and linux OS.
 
-If your chrome is not version 86, get the suitable chrome driver from the website below : 
+If your chrome is not version 86 or your computer is not having linux OS, get the suitable chrome driver from the website below : 
 
 https://chromedriver.chromium.org/downloads
 
