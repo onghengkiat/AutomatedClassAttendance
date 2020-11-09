@@ -36,9 +36,7 @@ for course in SCHEDULE:
         if time['day'] == current_day and time['begin'] <= current_hour <= time['end']:
             password = time['password']
             driver = webdriver.Chrome("chromedriver_linux64/chromedriver")
-            driver.get(
-                "https://casv.um.edu.my/cas/loginAllType?service=https%3A%2F%2Fspectrum.um.edu.my%2Flogin%2Findex.php")
-
+            driver.get("https://casv.um.edu.my/cas/loginAllType?service=https%3A%2F%2Fspectrum.um.edu.my%2Flogin%2Findex.php")
             loginPage = LoginPage(driver)
             loginPage.login(USERNAME, PASSWORD)
             while True:
@@ -48,7 +46,7 @@ for course in SCHEDULE:
                     coursePage = CoursePage(driver)
                     coursePage.enter_status_page()
                     statusPage = StatusPage(driver)
-                    if not statusPage.attendance_signed():
+                    if statusPage.attendance_signed() != -1:
                         statusPage.enter_attendance_page()
                         attendancePage = AttendancePage(driver)
                         if password is not None:

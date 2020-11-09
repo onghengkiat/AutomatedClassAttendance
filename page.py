@@ -57,34 +57,41 @@ class StatusPage(BasePage):
     status_element = StatusPageElement("statuscol")
 
     def attendance_signed(self):
-        if self.status_element.text == 'Present':
-            print("Attendance is already signed")
-            return True
-        else:
-            return False
+        index = 0
+        for element in self.status_element :
+            if element.text == "Submit Attendance":
+                return index
+            index = index + 1
+        return -1
 
-    def enter_attendance_page(self):
-        self.status_element.click()
+    def enter_attendance_page(self, index):
+        self.status_element[index].click()
 
 
 class AttendancePage(BasePage):
-    password_field = AttendancePageElement("abc")
-    status_field = AttendancePageElement("status")
+    submit_button = AttendancePageElement("submitbutton")
 
     def select_status(self):
-        status_select = Select(self.status_field)
-        status_select.select_by_visible_text("Present")
+        WebDriverWait(self.driver, 30).until(
+            lambda driver : driver.find_elements_by_name("statusdesc")
+        )
+        status_select = self.driver.find_elements_by_name("statusdecs")
+        for status in status_select:
+            if status.text == "Present":
+                status.click()
+                break
 
     def sign_attendance(self, password=None):
         if password is not None:
             # enter password
-            self.password_field = password
-
-        submit_button = self.driver.find_element_by_class_name("submit")
+            password_field = AttendancePageElement("studentpassword")
+            password_field.clear()
+            password_field.send_keys(password)
 
         time.sleep(3)
 
         actions = ActionChains(self.driver)
-        actions.click(submit_button)
+        actions.click(self.submit_button)
         actions.perform()
         return True
+

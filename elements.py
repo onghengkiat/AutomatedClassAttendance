@@ -51,14 +51,14 @@ class StatusPageElement(BaseElement):
             lambda driver : driver.find_elements_by_class_name(self.locator)
         )
         element = driver.find_elements_by_class_name(self.locator)
-        return element[1]
+        return element
 
 
 class AttendancePageElement(BaseElement):
     def __get__(self, obj, owner):
         driver = obj.driver
         WebDriverWait(self.driver, 30).until(
-            lambda driver : driver.find_elements_by_class_name(self.locator)
+            lambda driver : driver.find_element_by_name(self.locator)
         )
-        element = driver.find_elements_by_class_name(self.locator)
+        element = driver.find_element_by_name(self.locator)
         return element
